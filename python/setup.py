@@ -25,11 +25,11 @@ os.chdir(os.path.abspath(os.path.dirname(__file__)))
 
 if any(i in os.environ for i in ["CC", "CXX"]):
     if "CC" not in os.environ:
-        os.environ['CC'] = os.environ['CXX']
+        os.environ['CC'] = os.environ['@CXX@']
     if "CXX" not in os.environ:
-        os.environ['CXX'] = os.environ['CC']
+        os.environ['CXX'] = os.environ['@CC@']
     if platform.system() == 'Linux':
-        os.environ['LDSHARED'] = os.environ['CXX'] + " -shared"
+        os.environ['LDSHARED'] = os.environ['@CXX@'] + " -shared"
     print("Environment specifies CC=%s CXX=%s"%(os.environ['CC'], os.environ['CXX']))
 
 intel_compiler = os.getenv('CC', '') in ['icl', 'icpc', 'icc']
